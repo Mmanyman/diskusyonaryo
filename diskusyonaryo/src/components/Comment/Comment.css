@@ -1,0 +1,113 @@
+/* src/components/Comment.css */
+
+/* for lines */
+.replies {
+    margin-left: 40px;
+    margin-top: 10px;
+    position: relative; 
+}
+
+.replies::before {
+    content: "";
+    position: absolute;
+    left: -20px; 
+    top: 20px;
+    width: 1px;
+    height: calc(100% - 20px); 
+    background-color: #ccc; 
+}
+
+.replies > .comment {
+    margin: 10px; /* space between replies */
+}
+
+.reply-form textarea {
+    width: 100%;
+}
+
+
+
+
+
+
+.comment-content p {
+    margin: 0;
+    flex: 1;
+}
+
+/* upvote, downvote, reply */
+.comment-content button {
+    background-color: transparent;
+    border: 1px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px;
+    margin: 0 5px;
+    color: #555;
+}
+
+.comment-content button:hover {
+    color: #007BFF;
+    background-color: rgb(232, 232, 232);
+    border-radius: 10px;
+}
+
+.comment-content .btn-link {
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.comment-content .btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Vote Count Styling */
+.comment-content span {
+    font-size: 0.9rem;
+    margin: 0 5px;
+    color: #333;
+}
+
+
+/* src/components/AddComment/AddComment.css */
+
+.textarea-container {
+    position: relative; 
+}
+
+textarea {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px; 
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); 
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.button-container {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.submit-button, .cancel-button {
+    background-color: #ececec; 
+    color: rgb(0, 0, 0);
+    border: none; 
+    border-radius: 20px; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+}
+
+.submit-button:hover {
+    background-color: #ebebeb;
+}
+
+
+.cancel-button:hover {
+    background-color: #515151; 
+}
