@@ -1,0 +1,16 @@
+
+.team-member {
+    padding: 2%;
+}
+
+h6 {
+    padding: 5%;
+}
+
+img {
+    border-radius: 50%;
+}
+
+.social-btn .bi {
+    color: gray
+}
