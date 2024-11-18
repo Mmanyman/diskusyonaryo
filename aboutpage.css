@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.header {
+    background-color: #e6e6ff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 50px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top:1%;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 510px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-links a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.about-page {
+    margin: 5% 10%;
+}
+
+.about-team h1 {
+    padding-bottom: 2% 0;
+}
+
+.team-member {
+    padding: 1%;
+}
+
+.team-member img {
+    border-radius: 50%;
+    margin: 2%;
+}
+
+.team-member h5 {
+    margin: 2%;
+}
+
+.team-member i {
+    color: #333;
+}

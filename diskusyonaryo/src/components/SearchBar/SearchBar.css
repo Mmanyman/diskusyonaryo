@@ -1,0 +1,12 @@
+src/components/SearchBar/SearchBar.css
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 510px;
+}
+

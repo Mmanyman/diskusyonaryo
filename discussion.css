@@ -1,0 +1,43 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.comment {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.comment.reply {
+    border-left: 4px solid #007bff; /* Differentiate replies */
+    margin-left: 20px; /* Indent replies */
+    padding-left: 10px;
+}
+
+.comment .reply-form {
+    margin-top: 10px;
+}
+
+.comment .btn-link {
+    color: #007bff;
+}
+
+.comment p {
+    margin: 10px 0;
+}
+
+.reply-form textarea {
+    resize: none;
+}
+
+.replies {
+    margin-top: 10px;
+}
