@@ -1,6 +1,6 @@
-import React from 'react';
-import TeamMember from '../../components/TeamMember/TeamMember';
-import './About.css';
+import React from "react";
+import TeamMember from "../../components/TeamMember/TeamMember";
+import "./About.css";
 
 const About = () => {
     const teamMembers = [

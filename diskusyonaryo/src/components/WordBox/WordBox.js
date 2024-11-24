@@ -1,10 +1,10 @@
 // WordBox.js
-import React from 'react';
-import './WordBox.css'; 
+import React from "react";
+import "./WordBox.css";
 
-const WordBox = ({ word, definition }) => {
+const WordBox = ({ word, definition, className }) => {
     return (
-        <div className="word-box">
+        <div className={`word-box ${className}`}>
             <h2>{word}</h2>
             <p>{definition}</p>
         </div>

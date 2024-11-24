@@ -40,7 +40,7 @@ const Discussion = () => {
 
     return (
         <div className="discussion-page">
-            <WordBox word={wordData.word} definition={wordData.definition} />
+            <WordBox word={wordData.word} definition={wordData.definition} className="word-box-discussion" />
             {discussions.map((discussion) => (
                 <div className="discussion-container" onClick={() => handleDiscussionClick(discussion)}>
   

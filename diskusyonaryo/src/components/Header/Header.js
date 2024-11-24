@@ -11,7 +11,7 @@ const Header = () => {
                 <a href="/">home</a>
                 <a href="/Discussion">discussions</a>
                 <a href="/About">about</a>
-                <a href="/profile">👤</a>
+                <a href="/Profile">👤</a>
             </nav>
         </header>
     );

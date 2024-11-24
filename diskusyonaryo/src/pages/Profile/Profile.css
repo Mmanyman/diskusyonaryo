@@ -1,0 +1,60 @@
+.profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    margin: 2% 25%;  
+}
+
+.edit-button{
+    text-decoration: none;
+    color: black;
+    text-align: right;
+}
+
+.profile-image {
+    margin: 0 5%;
+}
+
+.profile-info {
+    position: relative;
+    text-align: left;
+}
+
+.profile-info p {
+    margin: 0; 
+    padding: 0; 
+}
+
+.address {
+    margin-bottom: 5px;
+}
+
+.language {
+    margin-top: 0;
+}
+
+.word-box {
+    flex: 0 0 250px;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin: 1% 5%;
+}
+
+.contributions {
+    margin: 0 5%;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin; 
+    scrollbar-color: grey white;
+}
+
+.recently-liked {
+    margin: 0 5%;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: thin; 
+    scrollbar-color: grey white;
+}
