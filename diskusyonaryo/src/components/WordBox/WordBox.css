@@ -1,6 +1,30 @@
-.word-box {
+.word-box h2 {
+    margin: 0; 
+    padding: 0; 
+    line-height: 1.2; 
+}
+
+.word-box p {
+    margin: 0;
+    padding: 0; 
+    line-height: 1.2; 
+}
+
+/* css for discussion page */
+.word-box-discussion {
     border: 1px solid gray;
     padding: 20px;
     border-radius: 10px; 
     margin: 50px;
+}
+
+/* css for profile page */
+.word-box-profile {
+    border: 1px solid gray;
+    padding: 1%;
+    width: 25%;
+    height: 100px;
+    margin: 15px;
+    display: inline-block;
+    overflow: hidden;
 }
