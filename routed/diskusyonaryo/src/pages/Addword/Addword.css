@@ -1,0 +1,24 @@
+.add-word-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .add-word-container .btn {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 15px 32px; /* Adjust button size */
+    font-size: 16px; /* Bigger font size */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-word-container .btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+  .add-word-container .btn:active {
+    background-color: #3e8e41; /* Even darker green when button is pressed */
+  }
+  

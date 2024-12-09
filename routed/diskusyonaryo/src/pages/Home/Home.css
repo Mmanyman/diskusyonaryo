@@ -1,0 +1,151 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+/* Header */
+.header {
+  background-color: #e6e6ff;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 50px;
+  margin: 1% 2%;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Search Bar */
+.input-group input {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 5px 10px;
+}
+
+.input-group .btn {
+  border-radius: 20px;
+}
+
+/* Slider Section */
+.slider-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+.slider-button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  color:blue;
+}
+
+.slider-button:hover {
+  background-color: #e6e6ff;
+}
+
+.slider-button.active {
+  background-color: #333;
+  color: white;
+  font-weight: bold;
+}
+
+/* Main Content */
+.main-content {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.category-title {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  margin-left: 25%;
+  
+}
+
+.content-item {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.word {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.definition {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.view-discussion {
+  text-align: right;
+  font-size: 14px;
+  color: #0066cc;
+  cursor: pointer;
+}
+/* Main Content */
+.main-content {
+  max-width: 1000px; 
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* Content Item */
+.content-item {
+  width: 800px; /* Make the box take 90% of the container width */
+  max-width: 800px; /* Limit the maximum width for larger screens */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px; /* Add more padding for better spacing */
+  margin: 15px auto; /* Center the boxes and add vertical spacing */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow for a polished look */
+  margin-left:15%;
+}
+
+.word {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px; /* Add more spacing below the title */
+}
+
+.definition {
+  color: #666;
+  margin-bottom: 12px; /* Add more spacing below the definition */
+}
+
+.view-discussion {
+  text-align: right;
+  font-size: 14px;
+  color: #0066cc;
+  cursor: pointer;
+}
