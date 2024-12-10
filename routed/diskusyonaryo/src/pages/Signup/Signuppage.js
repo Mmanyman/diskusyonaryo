@@ -1,5 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import { auth } from '../../firebase/config'
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 const styles = {
   container: {
@@ -77,10 +79,33 @@ const styles = {
 };
 
 const SignupPage = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
+
+  const navigate = useNavigate(); // Hook to redirect after Login
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await handleSignIn();
+  };
+
+  async function handleSignIn() {
+    await signInWithEmailAndPassword(auth, formData.email, formData.password)
+    .then(() => {
+      window.alert("login success")
+      navigate('/home');
+    })
+  }
 
   return (
     <div style={styles.container}>
@@ -88,17 +113,23 @@ const SignupPage = () => {
         <div style={styles.leftSide} />
         <div style={styles.rightSide}>
           <div style={styles.formContainer}>
-            <h1 style={styles.heading}>Get Started</h1>
+            <h1 style={styles.heading}>Log In</h1>
             <form onSubmit={handleSubmit}>
               <input
                 type="email"
                 placeholder="Email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 style={styles.input}
                 required
               />
               <input
                 type="password"
                 placeholder="Password"
+                name="password"
+                value={formData.password}
+                onChange={handleInputChange}
                 style={styles.input}
                 required
               />

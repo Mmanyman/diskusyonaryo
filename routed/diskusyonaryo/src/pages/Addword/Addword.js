@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useNavigate } from 'react';
 import './Addword.css';
 
 const AddWord = () => {
   const [word, setWord] = useState('');
   const [definition, setDefinition] = useState('');
+
+  
+  const navigate = useNavigate(); // Hook to redirect after signup
 
   const handleSubmit = (e) => {
     e.preventDefault();
