@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Link } from 'react-router-dom';
-import { auth } from "../../firebase/config"
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { auth, db } from "../../firebase/config"
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import WordBox from "../../components/WordBox/WordBox";
 import "./Profile.css";
@@ -8,21 +9,45 @@ import "./Profile.css";
 const Profile = () => {
     const [showAllContributions, setShowAllContributions] = useState(false);
     const [showAllLiked, setShowAllLiked] = useState(false);
-    const [currentUser, setUser] = useState();
-    const [userDetails, setDetails] = useState();
-    const profilePicture = "https://via.placeholder.com/150"
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            setUser(user)
-        }
+    const [currentUser, setCurrentUser] = useState();
+    const [userDetails, setDetails] = useState({
+        name: "",
+        location: "",
+        languages: ""
     });
+    const profilePicture = "https://via.placeholder.com/150"
+    const navigate = useNavigate()
+
+    async function getDetails() {
+        const userRef = collection(db, "users")
+        const q = query(userRef, where("id", "==", currentUser.uid))
+        getDocs(q)
+        .then((details) => {
+            details.docs.forEach(doc => {
+                setDetails(doc.data())
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setCurrentUser(user)
+                if (!currentUser?.uid) {
+                    return
+                }
+                getDetails()
+            }
+        })
+    })
 
     async function handleSignOut() {
         await signOut(auth)
         .then(() => {
             window.alert("sign out success")
-            window.location.reload()
+            navigate("/")
         })
     }    
 
@@ -56,9 +81,9 @@ const Profile = () => {
                 </div>
                 <div className="profile-info">
                         <>
-                            <h3>{currentUser.name}</h3>
-                            <p className="address">{currentUser.address}</p>
-                            <p className="language">{currentUser.language}</p>
+                            <h3>{userDetails.name}</h3>
+                            <p className="address">{userDetails.location}</p>
+                            <p className="language">{userDetails.languages}</p>
                             <button className="edit-button" onClick={handleSignOut}>
                                 Log Out
                             </button>
