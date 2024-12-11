@@ -4,7 +4,7 @@ import './TeamMember.css';
 const TeamMember = ({ name, image, description }) => {
     return (
         <div className='col-md-3 team-member'>
-            <img src={image} alt={name} />
+            <img src={image} alt={name} className='member-image' />
             <h6>{name}</h6>
             <p>{description}</p>
             <div className='social-btn'>

@@ -1,28 +1,32 @@
 import React from "react";
 import TeamMember from "../../components/TeamMember/TeamMember";
 import "./About.css";
+import emman from "./emman.jpg";
+import josaiah from "./josaiah.jpg";
+import albin from "./albin.jpg";
+import darah from "./darah.jpg";
 
 const About = () => {
     const teamMembers = [
         {
             name: "Emmanual Ian Albeza",
-            image: "https://via.placeholder.com/150",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            image: emman,
+            description: "Life  is short!",
         },
         {
             name: "Josaiah Borres",
-            image: "https://via.placeholder.com/150",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            image: josaiah,
+            description: "Time is gold.",
         },
         {
             name: "Albin Alexis Cayanan",
-            image: "https://via.placeholder.com/150",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            image: albin,
+            description: "Food is life!",
         },
         {
             name: "Darah Via Moscoso",
-            image: "https://via.placeholder.com/150",
-            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            image: darah,
+            description: "Love is in the air!",
         },
     ];
 
@@ -31,8 +35,7 @@ const About = () => {
             <div className='about-page'>
                 <h1>About Diskusyonaryo.com</h1>
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero modi atque dolore explicabo nihil sequi,
-                    ratione quaerat, dolor ut voluptatem cum at. Aliquam a optio nulla sint voluptas reiciendis aperiam.
+                Diskusyonaryo.com is a web-based urban and regional dictionary where user can engage in discussion forums.
                 </p>
             </div>
 

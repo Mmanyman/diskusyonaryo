@@ -1,4 +1,3 @@
-
 .team-member {
     padding: 2%;
 }
@@ -7,8 +6,12 @@ h6 {
     padding: 5%;
 }
 
-img {
+.member-image {
+    width: 150px; 
+    height: 150px; 
+    object-fit: cover;
     border-radius: 50%;
+    margin: 0 auto; 
 }
 
 .social-btn .bi {
