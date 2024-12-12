@@ -10,6 +10,7 @@ const Profile = () => {
     const [showAllContributions, setShowAllContributions] = useState(false);
     const [showAllLiked, setShowAllLiked] = useState(false);
     const [currentUser, setCurrentUser] = useState();
+    const [contributions, setContributions] = useState([]);
     const [userDetails, setDetails] = useState({
         name: "",
         location: "",
@@ -41,7 +42,18 @@ const Profile = () => {
                 getDetails()
             }
         })
+        getPosts()
     }, [currentUser])
+
+    async function getPosts() {
+        const ref = collection(db, "posts");
+        const result = await getDocs(ref);
+        const updatedPosts = [];
+        for (const doc of result.docs) {
+            updatedPosts.push(doc.data())
+        }
+        setContributions(updatedPosts)
+    }
 
     async function handleSignOut() {
         await signOut(auth)
@@ -51,9 +63,15 @@ const Profile = () => {
         })
     }    
 
-    const contributions = [];
-
     const recentlyLiked = [];
+
+    function checkPost(post) {
+        if (post.id in userDetails.posts) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     const visibleContributions = showAllContributions ? contributions : contributions.slice(0, 4);
     const visibleLiked = showAllLiked ? recentlyLiked : recentlyLiked.slice(0, 4);
@@ -93,14 +111,9 @@ const Profile = () => {
             <h2>Contributions</h2>
             <div className="contributions">
                 <div className="word-box-row">
-                    {visibleContributions.map((item, index) => (
-                        <WordBox
-                            key={index}
-                            word={item.word}
-                            definition={item.definition}
-                            className="word-box-profile"
-                        />
-                    ))}
+                    {contributions.filter(post => checkPost(post)).map(post => 
+                        <WordBox key={post.id} word={post.word} language={post.languages} definition={post.definition} className={"home"} />
+                    )}
                 </div>
                 {contributions.length > 4 && (
                     <div className="view-more-container">

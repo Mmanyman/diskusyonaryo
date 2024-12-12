@@ -96,6 +96,13 @@ const Home = () => {
 
   return (
     <div>
+      {/* Add Word Button */}
+      <div className="add-word-container">
+        <Link to="/add-word">
+          <button className="btn btn-primary">Add Word</button>
+        </Link>
+      </div>
+
       {/* Slider Section */}
       <div className="slider-container">
         {categories.map((category) => (
@@ -112,12 +119,6 @@ const Home = () => {
       {/* Dynamic Content Section */}
       <main className="main-content">{renderContent()}</main>
 
-      {/* Add Word Button */}
-      <div className="add-word-container">
-        <Link to="/add-word">
-          <button className="btn btn-primary">Add Word</button>
-        </Link>
-      </div>
     </div>
   );
 }
