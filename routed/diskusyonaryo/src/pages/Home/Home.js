@@ -14,12 +14,15 @@ const Home = () => {
   async function getPosts() {
     const ref = collection(db, "posts");
     const result = await getDocs(ref);
-    let updatedPosts = [...posts];
-    result.docs.forEach((doc) => {
+    const updatedPosts = [];
+    for (const doc of result.docs) {
       updatedPosts.push(doc.data())
-    })
+    }
+    // result.docs.forEach((doc) => {
+    //   updatedPosts.push(doc.data())
+    // })
+    // console.log(updatedPosts)
     setPosts(updatedPosts)
-    console.log(posts)
   }
 
   useEffect(() => {
@@ -29,7 +32,7 @@ const Home = () => {
         setCurrentUser(user)
       }
   })
-  }, [currentUser]);
+  }, []);
 
   const categories = ['Trending', 'Latest', 'Popular'];
 
@@ -40,7 +43,7 @@ const Home = () => {
           <>
           <h2 className="category-title">Trending</h2>
           <div>
-            <WordList words={posts}/>
+            <WordList posts={posts}/>
           </div>
           </>
         )

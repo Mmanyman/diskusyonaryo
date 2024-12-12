@@ -27,11 +27,12 @@ const Discussion = () => {
                 setCurrentUser(user)
             }
         })
-        getWord("8f6deed1-b162-45e5-a195-2e6498b4989b")
-        if (!discussions[0]?.id) {
-            return
-        }
-    }, [currentUser])
+        getWord("b2e49191-d827-4256-88a5-d4e548b0e34c")
+    }, [])
+
+    useEffect(() => {
+        getComments()
+    }, [wordData])
 
     async function getWord(wordID) {
         const ref = collection(db, "posts");
@@ -44,7 +45,6 @@ const Discussion = () => {
         }).catch(err => {
             console.log(err)
         })
-        getComments()
     }
 
     async function getComments() {
@@ -57,11 +57,11 @@ const Discussion = () => {
                 details.docs.forEach(doc => {
                     commentArray.push(doc.data())
                 })
+                setDiscussions(commentArray)
             }).catch(err => {
                 console.log(err)
             })
         })
-        setDiscussions(commentArray)
     }
 
     const handleDiscussionClick = (discussion) => {
@@ -105,13 +105,13 @@ const Discussion = () => {
 
     return (
         <div className="discussion-page">
-            <WordBox word={wordData.word} definition={wordData.definition} className="word-box-discussion" />
-
+            <WordBox word={wordData.word} definition={wordData.definition} language={wordData.language} className={"word-box-discussion"} />
+            
             <div className="textarea-container">
                 <textarea
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    placeholder="Add a reply"
+                    placeholder="Add a comment"
                     rows={1}
                 />
                 <div className="button-container">
@@ -119,16 +119,14 @@ const Discussion = () => {
                 </div>
             </div>
 
-            {discussions.map((discussion) => (
+            {discussions.map(discussion =>
                 <div className="discussion-container" onClick={() => handleDiscussionClick(discussion)}>
-
-                    <WordDiscussionPreview 
+                    <WordDiscussionPreview
                         uploader={discussion.poster} 
                         initialDiscussion={discussion} 
                     />
-                    
                 </div>
-            ))}
+            )}
         </div>
     );
 };

@@ -1,33 +1,27 @@
-import { collection, query, where, getDocs  } from 'firebase/firestore'
+import { collection, getDocs  } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { db } from '../../firebase/config'
-import WordList from '../../components/WordList/WordList'
+import WordBox from '../../components/WordBox/WordBox'
 
 const Search = () => {
+  const [posts, setPosts] = useState([])
   const [input, setInput] = useState("")
-  const [result, setResult] = useState([])
 
   async function handleSubmit(event) {
-    setInput(input.toLowerCase())
-    const postRef = collection(db, "posts")
-    const array = [];
-    const q = query(postRef, where('word', '==', input))
-    getDocs(q)
-    .then((details) => {
-      details.docs.forEach(doc => {
-        array.push(doc.data())
-      })
-    }).catch(err => {
-      console.log(err)
-    })
-    setResult(array)
     event.preventDefault()
+    const ref = collection(db, "posts");
+    const result = await getDocs(ref);
+    const updatedPosts = [];
+    for (const doc of result.docs) {
+      updatedPosts.push(doc.data())
+    }
+    setPosts(updatedPosts)
   }
 
-  async function displayResult() {
-    return <WordList posts={result}/>
+  function checkInput(post) {
+    return post.word == input
   }
-  
+
   return (
     <div className="search-bar">
     <form onSubmit={handleSubmit}>
@@ -40,6 +34,12 @@ const Search = () => {
       />
       <button type='submit'>Search</button>
     </form>
+    
+    <div>
+      {posts.filter(post => checkInput(post)).map(post => 
+        <WordBox key={post.id} word={post.word} language={post.languages} definition={post.definition} className={"home"} />
+      )}
+    </div>
     </div>
   )
 }

@@ -51,7 +51,6 @@ const Profile = () => {
         })
     }    
 
-    // Placeholder data
     const contributions = [];
 
     const recentlyLiked = [];
