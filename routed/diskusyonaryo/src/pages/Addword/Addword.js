@@ -23,7 +23,7 @@ const AddWord = () => {
         navigate('../home')
       }
     })
-  })
+  }, [currentUser])
 
   async function postToDB(post) {
     const docRef = doc(db, "posts", post.id);

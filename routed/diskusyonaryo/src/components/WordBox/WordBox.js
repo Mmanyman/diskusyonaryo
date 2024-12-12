@@ -6,7 +6,7 @@ const WordBox = ({ word, definition, className }) => {
     return (
         <div className={`word-box ${className}`}>
             <h2>{word}</h2>
-            <p>{definition}</p>
+            <p>{definition}</p> {}
         </div>
     );
 };

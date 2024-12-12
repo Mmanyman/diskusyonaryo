@@ -12,6 +12,7 @@ import SignupPage from './pages/Signup/Signuppage';
 import Home from './pages/Home/Home';
 import AddWord from './pages/Addword/Addword';
 import Signup1 from './pages/Signup1/Signup1';
+import Search from './pages/Search/Search';
 const App = () => {
     const location = useLocation();
 
@@ -33,6 +34,7 @@ const App = () => {
                 <Route path="/add-word" element={<AddWord />} />
                 <Route path="/Signup1" element={<Signup1 />} />
                 <Route path="/discussion/:id" element={<WordDiscussionExpanded />} />
+                <Route path="/Search" element={<Search />} />
             </Routes>
         </div>
     );

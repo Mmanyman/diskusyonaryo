@@ -28,3 +28,13 @@
     display: inline-block;
     overflow: hidden;
 }
+
+.word-box-home {
+    border: 1px solid gray;
+    padding: 1%;
+    width: 90%;
+    height: 100px;
+    margin: 15px;
+    display: inline-block;
+    overflow: hidden;
+}

@@ -41,7 +41,7 @@ const Profile = () => {
                 getDetails()
             }
         })
-    })
+    }, [currentUser])
 
     async function handleSignOut() {
         await signOut(auth)
