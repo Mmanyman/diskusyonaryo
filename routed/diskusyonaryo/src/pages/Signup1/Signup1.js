@@ -26,29 +26,37 @@ const Signup1 = () => {
     });
   };
 
-  async function addAccount(account) {
-    // add account details to db
+  async function userToDB(user) {
+    const docRef = doc(db, 'users', user.id);
+    await setDoc(docRef, user);
   }
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    // Basic validation
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       return;
     }
 
-    createUserWithEmailAndPassword(auth, formData.email, formData.password)
+    await createUserWithEmailAndPassword(auth, formData.email, formData.password)
     .then((userCreds) => {
-      const user = userCreds.user
-      const docRef = doc(db, 'users', user.id)
-      setDoc(docRef, user)
-      window.alert("Create account success")
+      console.log(userCreds)
+      const user = {
+        id: userCreds.user.uid,
+        name: formData.name,
+        location: formData.location,
+        languages: formData.language,
+        posts: [],
+        comments: [],
+        likes: [],
+      };
+      userToDB(user);
+      window.alert("Create account success");
+      // Redirect to the home page or dashboard after successful signup
+      navigate('/home');
+      return
     })
-
-    // Redirect to the home page or dashboard after successful signup
-    navigate('/home');
   };
 
   return (

@@ -8,7 +8,7 @@ const Header = () => {
             <div className="logo">Diskusyonaryo.com</div>
             <SearchBar /> {}
             <nav className="nav-links">
-                <a href="/">home</a>
+                <a href="/Home">home</a>
                 <a href="/Discussion">discussions</a>
                 <a href="/About">about</a>
                 <a href="/Profile">👤</a>

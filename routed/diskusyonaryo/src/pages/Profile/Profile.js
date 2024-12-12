@@ -1,119 +1,119 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { auth, db } from "../../firebase/config"
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import WordBox from "../../components/WordBox/WordBox";
 import "./Profile.css";
 
 const Profile = () => {
-    const [isEditing, setIsEditing] = useState(false);
     const [showAllContributions, setShowAllContributions] = useState(false);
     const [showAllLiked, setShowAllLiked] = useState(false);
-    const [user, setUser] = useState({
-        name: "Juan dela Cruz",
-        address: "Manila, Philippines",
-        language: "Filipino",
-        profilePicture: "https://via.placeholder.com/150",
+    const [currentUser, setCurrentUser] = useState();
+    const [contributions, setContributions] = useState([]);
+    const [userDetails, setDetails] = useState({
+        name: "",
+        location: "",
+        languages: ""
     });
+    const profilePicture = "https://via.placeholder.com/150"
+    const navigate = useNavigate()
 
-    // Placeholder data
-    const contributions = [
-        { word: "CMSC 128", definition: "A subject" },
-        { word: "Miagao", definition: "Malinong malipayon ining banwa natun. Pagbutlak sang adlaw, giakan sa baybayon." },
-        { word: "Hiligaynon", definition: "A language." },
-        { word: "Miagao", definition: "Akun pinalangga." },
-        { word: "UP Visayas", definition: "A school in Miagao." }
-    ];
+    async function getDetails() {
+        const userRef = collection(db, "users")
+        const q = query(userRef, where("id", "==", currentUser.uid))
+        getDocs(q)
+        .then((details) => {
+            details.docs.forEach(doc => {
+                setDetails(doc.data())
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 
-    const recentlyLiked = [
-        { word: "CMSC 128", definition: "A subject" },
-        { word: "Miagao", definition: "Malinong malipayon ining banwa natun." },
-        { word: "Hiligaynon", definition: "A language." },
-        { word: "Miagao", definition: "Akun pinalangga." },
-        { word: "UP Visayas", definition: "A school in Miagao." }
-    ];
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setCurrentUser(user)
+                if (!currentUser?.uid) {
+                    return
+                }
+                getDetails()
+            }
+        })
+        getPosts()
+    }, [currentUser])
+
+    async function getPosts() {
+        const ref = collection(db, "posts");
+        const result = await getDocs(ref);
+        const updatedPosts = [];
+        for (const doc of result.docs) {
+            updatedPosts.push(doc.data())
+        }
+        setContributions(updatedPosts)
+    }
+
+    async function handleSignOut() {
+        await signOut(auth)
+        .then(() => {
+            window.alert("sign out success")
+            navigate("/")
+        })
+    }    
+
+    const recentlyLiked = [];
+
+    function checkPost(post) {
+        if (post.id in userDetails.posts) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     const visibleContributions = showAllContributions ? contributions : contributions.slice(0, 4);
     const visibleLiked = showAllLiked ? recentlyLiked : recentlyLiked.slice(0, 4);
 
-    const handleEditClick = () => {
-        setIsEditing(true);
-    };
-
-    const handleSaveClick = () => {
-        setIsEditing(false);
-    };
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setUser((prevUser) => ({
-            ...prevUser,
-            [name]: value,
-        }));
-    };
-
+    if (!currentUser){
+        return (
+            <div>
+                <Link to="/Signup">
+                    Sign In
+                </Link>
+                <br/><br/><br/>
+                <Link to="/Signup1">
+                    Create an Account
+                </Link>
+            </div>
+        )
+    }
+    else {
     return (
         <div>
             <div className="profile-container">
                 <div className="profile-image">
-                    <img src={user.profilePicture} alt="Profile" />
+                    <img src={profilePicture} alt="Profile" />
                 </div>
                 <div className="profile-info">
-                    {isEditing ? (
-                        <div className="edit-profile-form">
-                            <label>
-                                Name:
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={user.name}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Address:
-                                <input
-                                    type="text"
-                                    name="address"
-                                    value={user.address}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                Language:
-                                <input
-                                    type="text"
-                                    name="language"
-                                    value={user.language}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <button onClick={handleSaveClick}>Save</button>
-                        </div>
-                    ) : (
                         <>
-                            <h3>{user.name}</h3>
-                            <p className="address">{user.address}</p>
-                            <p className="language">{user.language}</p>
-                            <button className="edit-button" onClick={handleEditClick}>
-                                Edit Profile
-                            </button><br/>
-                            <button className="edit-button">
+                            <h3>{userDetails.name}</h3>
+                            <p className="address">{userDetails.location}</p>
+                            <p className="language">{userDetails.languages}</p>
+                            <button className="edit-button" onClick={handleSignOut}>
                                 Log Out
                             </button>
                         </>
-                    )}
                 </div>
             </div>
 
             <h2>Contributions</h2>
             <div className="contributions">
                 <div className="word-box-row">
-                    {visibleContributions.map((item, index) => (
-                        <WordBox
-                            key={index}
-                            word={item.word}
-                            definition={item.definition}
-                            className="word-box-profile"
-                        />
-                    ))}
+                    {contributions.filter(post => checkPost(post)).map(post => 
+                        <WordBox key={post.id} word={post.word} language={post.languages} definition={post.definition} className={"home"} />
+                    )}
                 </div>
                 {contributions.length > 4 && (
                     <div className="view-more-container">
@@ -152,6 +152,7 @@ const Profile = () => {
             </div>
         </div>
     );
+};
 };
 
 export default Profile;

@@ -28,3 +28,11 @@
     display: inline-block;
     overflow: hidden;
 }
+
+.word-box-home {
+    border: 1px solid gray;
+    padding: 20px;
+    width: 500px;
+    border-radius: 10px; 
+    margin: 50px;
+}

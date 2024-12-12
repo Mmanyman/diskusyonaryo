@@ -1,9 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import './Home.css';
+import { collection, getDocs } from 'firebase/firestore';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth, db } from '../../firebase/config'
+import WordList from '../../components/WordList/WordList';
 
 const Home = () => {
+  const [currentUser, setCurrentUser] = useState();
   const [selectedCategory, setSelectedCategory] = useState('Trending');
+  const [posts, setPosts] = useState([]);
+
+  async function getPosts() {
+    const ref = collection(db, "posts");
+    const result = await getDocs(ref);
+    const updatedPosts = [];
+    for (const doc of result.docs) {
+      updatedPosts.push(doc.data())
+    }
+    // result.docs.forEach((doc) => {
+    //   updatedPosts.push(doc.data())
+    // })
+    // console.log(updatedPosts)
+    setPosts(updatedPosts)
+  }
+
+  useEffect(() => {
+    getPosts()
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser(user)
+      }
+  })
+  }, []);
 
   const categories = ['Trending', 'Latest', 'Popular'];
 
@@ -11,24 +40,14 @@ const Home = () => {
     switch (selectedCategory) {
       case 'Trending':
         return (
+          <>
+          <h2 className="category-title">Trending</h2>
           <div>
-            <h2 className="category-title">Trending</h2>
-            <div className="content-item">
-              <div className="word">Word 1</div>
-              <div className="definition">Definition 1</div>
-              <div className="view-discussion">
-                <Link to="/discussion">View Discussion</Link>
-              </div>
-            </div>
-            <div className="content-item">
-              <div className="word">Word 2</div>
-              <div className="definition">Definition 2</div>
-              <div className="view-discussion">
-                <Link to="/discussion">View Discussion</Link>
-              </div>
-            </div>
+            <WordList posts={posts}/>
           </div>
-        );
+          </>
+        )
+      
       case 'Latest':
         return (
           <div>
@@ -69,6 +88,7 @@ const Home = () => {
             </div>
           </div>
         );
+
       default:
         return null;
     }
@@ -76,10 +96,17 @@ const Home = () => {
 
   return (
     <div>
+      {/* Add Word Button */}
+      <div className="add-word-container">
+        <Link to="/add-word">
+          <button className="btn btn-primary">Add Word</button>
+        </Link>
+      </div>
+
       {/* Slider Section */}
       <div className="slider-container">
         {categories.map((category) => (
-          <button
+        <button
             key={category}
             className={`slider-button ${selectedCategory === category ? 'active' : ''}`}
             onClick={() => setSelectedCategory(category)}
@@ -92,14 +119,8 @@ const Home = () => {
       {/* Dynamic Content Section */}
       <main className="main-content">{renderContent()}</main>
 
-      {/* Add Word Button */}
-      <div className="add-word-container">
-        <Link to="/add-word">
-          <button className="btn btn-primary">Add Word</button>
-        </Link>
-      </div>
     </div>
   );
-};
+}
 
 export default Home;
