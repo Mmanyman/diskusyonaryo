@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { v4 as uuidv4 } from "uuid"
 import { auth, db } from '../../firebase/config'
 import WordBox from '../../components/WordBox/WordBox';
@@ -20,6 +20,8 @@ const Discussion = () => {
         word: "LOADING",
         definition: "Fetching definition..."
     });
+
+    const location = useLocation();
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {

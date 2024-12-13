@@ -30,9 +30,12 @@
 }
 
 .word-box-home {
-    border: 1px solid gray;
+    border: 4px solid gray;
     padding: 20px;
     width: 500px;
     border-radius: 10px; 
     margin: 50px;
+    margin-left: -150px;
+    height: 150px;
 }
+

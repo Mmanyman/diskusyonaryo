@@ -96,12 +96,11 @@ const Home = () => {
 
   return (
     <div>
-      {/* Add Word Button */}
-      <div className="add-word-container">
-        <Link to="/add-word">
-          <button className="btn btn-primary">Add Word</button>
-        </Link>
-      </div>
+<div className="add-word-container">
+  <Link to="/add-word">
+    <button className="btn">Add Word</button>
+  </Link>
+</div>
 
       {/* Slider Section */}
       <div className="slider-container">

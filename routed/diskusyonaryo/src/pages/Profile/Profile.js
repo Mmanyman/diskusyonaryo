@@ -78,12 +78,11 @@ const Profile = () => {
 
     if (!currentUser){
         return (
-            <div>
-                <Link to="/Signup">
+            <div className="auth-container">
+                <Link to="/Signup" className="auth-button">
                     Sign In
                 </Link>
-                <br/><br/><br/>
-                <Link to="/Signup1">
+                <Link to="/Signup1" className="auth-button secondary">
                     Create an Account
                 </Link>
             </div>
@@ -112,7 +111,7 @@ const Profile = () => {
             <div className="contributions">
                 <div className="word-box-row">
                     {contributions.filter(post => checkPost(post)).map(post => 
-                        <WordBox key={post.id} word={post.word} language={post.languages} definition={post.definition} className={"home"} />
+                        <WordBox key={post.id} word={post.word} language={post.language} definition={post.definition} />
                     )}
                 </div>
                 {contributions.length > 4 && (
@@ -127,7 +126,7 @@ const Profile = () => {
                 )}
             </div>
 
-            <h2>Recently Liked</h2>
+            {/* <h2>Recently Liked</h2>
             <div className="recently-liked">
                 <div className="word-box-row">
                     {visibleLiked.map((item, index) => (
@@ -149,7 +148,7 @@ const Profile = () => {
                         </button>
                     </div>
                 )}
-            </div>
+            </div> */}
         </div>
     );
 };
