@@ -149,3 +149,17 @@ body {
   color: #0066cc;
   cursor: pointer;
 }
+.add-word-container {
+  display: flex; /* Optional: Aligns the button to the container */
+  justify-content: center; /* Optional: Centers the button horizontally */
+  margin: 10px 0; /* Optional: Adds some spacing around the button */
+}
+
+.add-word-container .btn {
+  padding: 5px 10px; /* Adjusts the padding for a smaller button */
+  font-size: 25px; /* Adjusts the font size for smaller text */
+  border-radius: 20px; /* Adjusts the roundness of the button edges */
+  min-width: 400px; /* Sets a minimum width to ensure consistency */
+}
+
+

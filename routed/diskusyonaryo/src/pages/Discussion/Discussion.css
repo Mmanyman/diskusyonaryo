@@ -20,3 +20,12 @@
 .upvote-downvote-container button:active {
     transform: scale(0.9);
 }
+
+.textarea-container{
+    width:800px;
+    margin-left: 375px;
+}
+
+.discussion-page{
+    text-align: center;
+}

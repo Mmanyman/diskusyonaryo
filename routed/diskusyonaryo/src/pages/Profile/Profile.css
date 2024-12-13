@@ -105,3 +105,36 @@ h2 {
     all: unset;
     text-align: right;
 }
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Adds spacing between buttons */
+    margin-top: 50px; /* Adds space from the top of the page */
+}
+
+.auth-button {
+    display: inline-block;
+    text-decoration: none; /* Removes underline from links */
+    font-size: 18px; /* Adjusts font size */
+    font-weight: bold; /* Makes text bold */
+    color: white; /* White text for contrast */
+    background-color: #007bff; /* Blue background */
+    padding: 10px 20px; /* Adds padding for button look */
+    border-radius: 8px; /* Rounds the corners */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+.auth-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.auth-button.secondary {
+    background-color: #6c757d; /* Gray background for secondary button */
+}
+
+.auth-button.secondary:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+}

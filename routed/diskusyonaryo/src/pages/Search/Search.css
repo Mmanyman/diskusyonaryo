@@ -1,0 +1,60 @@
+.search-bar {
+  display: flex; /* Optional: Aligns the button to the container */
+  justify-content: center; /* Optional: Centers the button horizontally */
+  margin: 10px 0; /* Optional: Adds some spacing around the button */
+}
+
+.search-bar.btn {
+  padding: 5px 10px; /* Adjusts the padding for a smaller button */
+  font-size: 12px; /* Adjusts the font size for smaller text */
+  border-radius: 50px; /* Adjusts the roundness of the button edges */
+  min-width: 80px; /* Sets a minimum width to ensure consistency */
+
+}
+
+.result {
+  display: flex; /* Optional: Aligns the button to the container */
+  justify-content: center; /* Optional: Centers the button horizontally */
+ /* Optional: Adds some spacing around the button */
+  margin-left: 30px;
+}
+
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-aligns the search bar and results */
+  margin: 20px;
+}
+
+.search-bar form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px; /* Adds spacing between input and button */
+}
+
+.search-bar input {
+  width: 300px; /* Adjust width as needed */
+}
+
+.search-bar .result {
+  display: grid; /* Use grid layout for better alignment */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust based on screen size */
+  gap: 20px; /* Adds spacing between WordBox elements */
+  margin-top: 20px;
+  width: 100%; /* Ensures the container spans full width */
+  max-width: 1200px; /* Optional: Limit the max width */
+  margin-left: 30px;
+}
+
+.WordBox {
+  background: #f9f9f9; /* Example background color */
+  border: 1px solid #ddd; /* Example border */
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for a nice effect */
+  text-align: left; /* Align text within the box */
+  margin-left: 15px;
+}
+
+

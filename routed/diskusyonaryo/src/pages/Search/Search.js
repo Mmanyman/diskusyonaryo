@@ -2,7 +2,7 @@ import { collection, getDocs  } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { db } from '../../firebase/config'
 import WordBox from '../../components/WordBox/WordBox'
-
+import "./Search.css";
 const Search = () => {
   const [posts, setPosts] = useState([])
   const [input, setInput] = useState("")
@@ -19,7 +19,7 @@ const Search = () => {
   }
 
   function checkInput(post) {
-    return post.word == input
+    return post.word === input
   }
 
   return (
@@ -34,10 +34,11 @@ const Search = () => {
       />
       <button type='submit'>Search</button>
     </form>
+    <div/>
     
-    <div>
+    <div classname="result">
       {posts.filter(post => checkInput(post)).map(post => 
-        <WordBox key={post.id} word={post.word} language={post.languages} definition={post.definition} className={"home"} />
+        <WordBox key={post.id} word={post.word} language={post.language} definition={post.definition} className={"home"} />
       )}
     </div>
     </div>
